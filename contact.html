@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - ProprioAsso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #0ea5e9;
+            --success: #10b981;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--bg);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0.75rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-main {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 2rem 4rem;
+            background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        /* Availability Banner */
+        .availability-banner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 500;
+        }
+
+        .availability-banner .icon {
+            font-size: 1.5rem;
+        }
+
+        /* Contact Sections */
+        .contact-sections {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-sections {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
+            }
+        }
+
+        .contact-card {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .contact-card.proprietaires {
+            border-top: 4px solid var(--primary);
+        }
+
+        .contact-card.associations {
+            border-top: 4px solid var(--secondary);
+        }
+
+        .contact-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+        }
+
+        .contact-card.proprietaires .contact-icon {
+            background: #e0e7ff;
+        }
+
+        .contact-card.associations .contact-icon {
+            background: #dbeafe;
+        }
+
+        .contact-title h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-title p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .hotline-box {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .hotline-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .hotline-number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card.associations .hotline-number {
+            color: var(--secondary);
+        }
+
+        .hotline-hours {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .contact-email {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.2s;
+        }
+
+        .contact-email:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .contact-email .icon {
+            font-size: 1.25rem;
+        }
+
+        .contact-email .label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .contact-email .address {
+            font-weight: 600;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Team Section */
+        .team-section {
+            background: var(--bg-white);
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .team-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .member-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-avatar::before {
+            content: attr(data-initials);
+            font-weight: 700;
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .member-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .member-role {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-specialty {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.75rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        /* Partnership Section */
+        .partnership-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 6rem 2rem;
+        }
+
+        .partnership-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .partnership-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .partnership-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .partnership-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .partnership-benefits {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .partnership-benefits li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .partnership-benefits li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .partnership-form {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .partnership-form h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .partnership-form .form-input,
+        .partnership-form .form-select,
+        .partnership-form .form-textarea {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .partnership-form .form-input::placeholder,
+        .partnership-form .form-textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .partnership-form .form-label {
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid #1e293b;
+            text-align: center;
+            color: #64748b;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .availability-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="3" width="36" height="36" rx="10" fill="url(#logoGrad)" opacity="0.1"/>
+                    <rect x="3" y="3" width="36" height="36" rx="10" stroke="url(#logoGrad)" stroke-width="2" fill="none"/>
+                    <path d="M21 8L8 20V32H17V24H25V32H34V20L21 8Z" fill="url(#logoGrad)"/>
+                    <circle cx="12" cy="32" r="3" fill="white"/>
+                    <circle cx="30" cy="32" r="3" fill="white"/>
+                    <circle cx="21" cy="14" r="2" fill="white" opacity="0.8"/>
+                    <path d="M12 32L21 14L30 32" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                    <defs>
+                        <linearGradient id="logoGrad" x1="3" y1="3" x2="39" y2="39" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#6366f1"/>
+                            <stop offset="100%" stop-color="#0ea5e9"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-main">ProprioAsso</span>
+                    <span class="logo-sub">Plateforme de mise en relation</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="comment-ca-marche.html">Comment ça marche</a>
+                <a href="proprietaires.html">Propriétaires</a>
+                <a href="associations.html">Associations</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-cta">
+                <a href="#" class="btn btn-outline">Connexion</a>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Contactez <span>votre équipe dédiée</span></h1>
+            <p class="hero-subtitle">
+                Que vous soyez propriétaire ou association, notre équipe est là pour vous accompagner 
+                dans vos démarches de logement solidaire.
+            </p>
+            <div class="availability-banner">
+                <span class="icon">🕐</span>
+                <span>Disponible du lundi au vendredi, de 9h à 18h</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Sections -->
+    <section class="contact-sections">
+        <!-- Propriétaires -->
+        <div class="contact-card proprietaires">
+            <div class="contact-header">
+                <div class="contact-icon">🏠</div>
+                <div class="contact-title">
+                    <h2>Espace Propriétaires</h2>
+                    <p>Line dédiée pour les propriétaires</p>
+                </div>
+            </div>
+
+            <div class="hotline-box">
+                <div class="hotline-label">Hotline propriétaires</div>
+                <div class="hotline-number">01 84 88 00 01</div>
+                <div class="hotline-hours">Lun-Ven • 9h-18h • Appel non surtaxé</div>
+            </div>
+
+            <a href="mailto:proprietaires@proprioasso.fr" class="contact-email">
+                <span class="icon">✉️</span>
+                <div>
+                    <div class="label">Email dédié</div>
+                    <div class="address">proprietaires@proprioasso.fr</div>
+                </div>
+            </a>
+
+            <form>
+                <div class="form-group">
+                    <label class="form-label">Raison du contact *</label>
+                    <select class="form-select">
+                        <option value="">Sélectionnez une option</option>
+                        <option value="inscription">Question sur l'inscription</option>
+                        <option value="bien">Ajouter/modifier un bien</option>
+                        <option value="demande">Suivi d'une demande reçue</option>
+                        <option value="location">Gestion d'une location en cours</option>
+                        <option value="documents">Documents administratifs</option>
+                        <option value="financier">Question financière/fiscale</option>
+                        <option value="autre">Autre sujet</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Prénom *</label>
+                        <input type="text" class="form-input" placeholder="Votre prénom">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nom *</label>
+                        <input type="text" class="form-input" placeholder="Votre nom">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email *</label>
+                    <input type="email" class="form-input" placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Téléphone</label>
+                    <input type="tel" class="form-input" placeholder="06 12 34 56 78">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Message *</label>
+                    <textarea class="form-textarea" placeholder="Décrivez votre demande..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                    Envoyer ma demande
+                </button>
+            </form>
+        </div>
+
+        <!-- Associations -->
+        <div class="contact-card associations">
+            <div class="contact-header">
+                <div class="contact-icon">🤝</div>
+                <div class="contact-title">
+                    <h2>Espace Associations</h2>
+                    <p>Line dédiée pour les associations</p>
+                </div>
+            </div>
+
+            <div class="hotline-box">
+                <div class="hotline-label">Hotline associations</div>
+                <div class="hotline-number">01 84 88 00 02</div>
+                <div class="hotline-hours">Lun-Ven • 9h-18h • Appel non surtaxé</div>
+            </div>
+
+            <a href="mailto:associations@proprioasso.fr" class="contact-email">
+                <span class="icon">✉️</span>
+                <div>
+                    <div class="label">Email dédié</div>
+                    <div class="address">associations@proprioasso.fr</div>
+                </div>
+            </a>
+
+            <form>
+                <div class="form-group">
+                    <label class="form-label">Raison du contact *</label>
+                    <select class="form-select">
+                        <option value="">Sélectionnez une option</option>
+                        <option value="inscription">Inscription association</option>
+                        <option value="recherche">Recherche de logement</option>
+                        <option value="demande">Suivi d'une demande en cours</option>
+                        <option value="locataire">Gestion d'un locataire</option>
+                        <option value="finance">Suivi financier / loyer</option>
+                        <option value="urgence">Situation d'urgence</option>
+                        <option value="partenariat">Devenir partenaire</option>
+                        <option value="autre">Autre sujet</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Prénom *</label>
+                        <input type="text" class="form-input" placeholder="Votre prénom">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nom *</label>
+                        <input type="text" class="form-input" placeholder="Votre nom">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nom de l'association *</label>
+                    <input type="text" class="form-input" placeholder="Association...">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email *</label>
+                    <input type="email" class="form-input" placeholder="contact@association.fr">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Message *</label>
+                    <textarea class="form-textarea" placeholder="Décrivez votre demande..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-secondary" style="width: 100%; justify-content: center;">
+                    Envoyer ma demande
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="section-header">
+            <h2>Notre équipe à votre écoute</h2>
+            <p>Des experts dédiés pour vous accompagner dans vos démarches de logement solidaire</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-avatar" data-initials="CS" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"></div>
+                <div class="member-name">Claire Simon</div>
+                <div class="member-role">Responsable Relations Propriétaires</div>
+                <span class="member-specialty">Line 01 84 88 00 01</span>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar" data-initials="TM" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"></div>
+                <div class="member-name">Thomas Moreau</div>
+                <div class="member-role">Responsable Relations Associations</div>
+                <span class="member-specialty">Line 01 84 88 00 02</span>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar" data-initials="SB" style="background: linear-gradient(135deg, #10b981, #34d399);"></div>
+                <div class="member-name">Sophie Bernard</div>
+                <div class="member-role">Conseillère Logement</div>
+                <span class="member-specialty">Accompagnement locataires</span>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar" data-initials="AL" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);"></div>
+                <div class="member-name">Alexandre Lefèvre</div>
+                <div class="member-role">Responsable Partenariats</div>
+                <span class="member-specialty">Développement & partenariats</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section class="partnership-section">
+        <div class="partnership-content">
+            <div class="partnership-text">
+                <h2>Devenez partenaire de ProprioAsso</h2>
+                <p>
+                    Vous représentez une collectivité, un fonds d'investissement, 
+                    une entreprise ou un média ? Rejoignez notre écosystème et 
+                    contribuons ensemble à résoudre la crise du logement.
+                </p>
+                <ul class="partnership-benefits">
+                    <li>Accès prioritaire à nos données et rapports</li>
+                    <li>Visibilité sur notre plateforme et communications</li>
+                    <li>Participation à nos événements et conférences</li>
+                    <li>Accompagnement personnalisé par notre équipe</li>
+                    <li>Impact social mesurable et valorisable</li>
+                </ul>
+                <a href="mailto:partenariats@proprioasso.fr" class="btn btn-primary btn-large">
+                    Discuter d'un partenariat
+                </a>
+            </div>
+
+            <div class="partnership-form">
+                <h3>Formulaire de contact partenariat</h3>
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">Type de structure *</label>
+                        <select class="form-select">
+                            <option value="">Sélectionnez...</option>
+                            <option>Collectivité territoriale</option>
+                            <option>Fonds d'investissement / Financeur</option>
+                            <option>Entreprise / CSR</option>
+                            <option>Média</option>
+                            <option>Autre association</option>
+                            <option>Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nom de la structure *</label>
+                        <input type="text" class="form-input" placeholder="Votre organisation">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Prénom *</label>
+                            <input type="text" class="form-input" placeholder="Prénom">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nom *</label>
+                            <input type="text" class="form-input" placeholder="Nom">
+                        </div>
+                        </div>
+                    <div class="form-group">
+                        <label class="form-label">Fonction *</label>
+                        <input type="text" class="form-input" placeholder="Votre poste">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email professionnel *</label>
+                        <input type="email" class="form-input" placeholder="email@structure.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Objet du partenariat *</label>
+                        <select class="form-select">
+                            <option value="">Sélectionnez...</option>
+                            <option>Financement / Mécénat</option>
+                            <option>Communication / Visibilité</option>
+                            <option>Intégration de services</option>
+                            <option>Recherche et données</option>
+                            <option>Événementiel</option>
+                            <option>Autre proposition</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Votre message *</label>
+                        <textarea class="form-textarea" placeholder="Décrivez votre projet de partenariat..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        Envoyer ma proposition
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>ProprioAsso</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="comment-ca-marche.html">Comment ça marche</a></li>
+                    <li><a href="proprietaires.html">Espace Propriétaires</a></li>
+                    <li><a href="associations.html">Espace Associations</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="contact.html">Page contact</a></li>
+                    <li><a href="mailto:proprietaires@proprioasso.fr">proprietaires@proprioasso.fr</a></li>
+                    <li><a href="mailto:associations@proprioasso.fr">associations@proprioasso.fr</a></li>
+                    <li><a href="mailto:partenariats@proprioasso.fr">partenariats@proprioasso.fr</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <ul>
+                    <li><a href="#">Guide du propriétaire</a></li>
+                    <li><a href="#">Guide de l'association</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">CGU</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ProprioAsso. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

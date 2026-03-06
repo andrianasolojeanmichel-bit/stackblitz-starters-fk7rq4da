@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Espace - Tableau de bord | ProprioAsso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #0ea5e9;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+            --sidebar-width: 260px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        /* Layout */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--bg-white);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .user-info {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .user-details h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .user-details p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .nav-menu {
+            padding: 1rem 0;
+        }
+
+        .nav-section {
+            padding: 0 1rem 1rem;
+        }
+
+        .nav-section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            padding: 0 1rem 0.5rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            margin: 0.25rem 0.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: var(--bg);
+            color: var(--primary);
+        }
+
+        .nav-item.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-item i {
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .badge {
+            margin-left: auto;
+            background: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: var(--success);
+        }
+
+        .badge-warning {
+            background: var(--warning);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+        }
+
+        /* Top Header */
+        .top-header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .page-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .page-title p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .notification-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            font-size: 1.2rem;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            background: var(--danger);
+            border-radius: 50%;
+        }
+
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 2rem;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-icon.blue {
+            background: #dbeafe;
+        }
+
+        .stat-icon.green {
+            background: #d1fae5;
+        }
+
+        .stat-icon.orange {
+            background: #fef3c7;
+        }
+
+        .stat-icon.purple {
+            background: #e0e7ff;
+        }
+
+        .stat-info h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-action {
+            font-size: 0.85rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .property-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .property-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .property-details h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .property-details p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-badge.active {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-badge.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-badge.rented {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        /* Documents List */
+        .document-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        .document-item:hover {
+            background: var(--bg);
+        }
+
+        .document-item:last-child {
+            border-bottom: none;
+        }
+
+        .doc-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #fee2e2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .doc-icon.pdf {
+            background: #fee2e2;
+        }
+
+        .doc-icon.img {
+            background: #dbeafe;
+        }
+
+        .doc-icon.doc {
+            background: #fef3c7;
+        }
+
+        .doc-info {
+            flex: 1;
+        }
+
+        .doc-info h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .doc-info p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .doc-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .icon-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: var(--bg);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Requests List */
+        .request-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .request-item:last-child {
+            border-bottom: none;
+        }
+
+        .request-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .request-info {
+            flex: 1;
+        }
+
+        .request-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .request-info p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .request-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .request-status {
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .request-status.new {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .request-status.viewed {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        /* Activity Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.25rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .timeline-item.success::before {
+            background: var(--success);
+            box-shadow: 0 0 0 2px var(--success);
+        }
+
+        .timeline-item.warning::before {
+            background: var(--warning);
+            box-shadow: 0 0 0 2px var(--warning);
+        }
+
+        .timeline-content {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .timeline-content h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .timeline-date {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .top-header {
+                padding: 1rem;
+            }
+
+            .dashboard-content {
+                padding: 1rem;
+            }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+        }
+
+        .tab {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-light);
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab:hover {
+            color: var(--text);
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="36" height="36" rx="10" fill="url(#logoGrad)" opacity="0.1"/>
+                        <rect x="3" y="3" width="36" height="36" rx="10" stroke="url(#logoGrad)" stroke-width="2" fill="none"/>
+                        <path d="M21 8L8 20V32H17V24H25V32H34V20L21 8Z" fill="url(#logoGrad)"/>
+                        <circle cx="12" cy="32" r="3" fill="white"/>
+                        <circle cx="30" cy="32" r="3" fill="white"/>
+                        <circle cx="21" cy="14" r="2" fill="white" opacity="0.8"/>
+                        <path d="M12 32L21 14L30 32" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                        <defs>
+                            <linearGradient id="logoGrad" x1="3" y1="3" x2="39" y2="39" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#6366f1"/>
+                                <stop offset="100%" stop-color="#0ea5e9"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="logo-text">ProprioAsso</span>
+                </a>
+            </div>
+
+            <div class="user-info">
+                <div class="user-avatar">JD</div>
+                <div class="user-details">
+                    <h4>Jean Dupont</h4>
+                    <p>Propriétaire</p>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Menu principal</div>
+                    <a href="#" class="nav-item active" onclick="showSection('dashboard')">
+                        <span>📊</span>
+                        Tableau de bord
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('biens')">
+                        <span>🏠</span>
+                        Mes biens
+                        <span class="badge">3</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('demandes')">
+                        <span>📨</span>
+                        Demandes
+                        <span class="badge badge-warning">2</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('documents')">
+                        <span>📁</span>
+                        Documents
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Paramètres</div>
+                    <a href="#" class="nav-item">
+                        <span>⚙️</span>
+                        Mon profil
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span>🔔</span>
+                        Notifications
+                    </a>
+                    <a href="index.html" class="nav-item">
+                        <span>🚪</span>
+                        Déconnexion
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="page-title">
+                    <h1>Tableau de bord</h1>
+                    <p>Bienvenue Jean, voici l'activité de vos biens</p>
+                </div>
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        🔔
+                        <span class="notification-dot"></span>
+                    </button>
+                    <a href="#" class="btn btn-primary">
+                        <span>+</span>
+                        Ajouter un bien
+                    </a>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">🏠</div>
+                        <div class="stat-info">
+                            <h3>3</h3>
+                            <p>Biens en ligne</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">📨</div>
+                        <div class="stat-info">
+                            <h3>5</h3>
+                            <p>Demandes reçues</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">✅</div>
+                        <div class="stat-info">
+                            <h3>2</h3>
+                            <p>Locations actives</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">💰</div>
+                        <div class="stat-info">
+                            <h3>2 400€</h3>
+                            <p>Loyers ce mois</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Grid -->
+                <div class="content-grid">
+                    <!-- Left Column -->
+                    <div class="main-column">
+                        <!-- Tabs -->
+                        <div class="tabs">
+                            <button class="tab active" onclick="switchTab('biens')">Mes biens</button>
+                            <button class="tab" onclick="switchTab('demandes')">Demandes reçues</button>
+                            <button class="tab" onclick="switchTab('historique')">Historique</button>
+                        </div>
+
+                        <!-- Tab: Biens -->
+                        <div id="tab-biens" class="tab-content active">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Mes biens immobiliers</h3>
+                                    <a href="#" class="card-action">Voir tout →</a>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-container">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Bien</th>
+                                                    <th>Type</th>
+                                                    <th>Loyer</th>
+                                                    <th>Statut</th>
+                                                    <th>Demandes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="property-info">
+                                                            <div class="property-img">🏠</div>
+                                                            <div class="property-details">
+                                                                <h4>Appartement Paris 11e</h4>
+                                                                <p>45 m² • 2 pièces</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>T2</td>
+                                                    <td>980€/mois</td>
+                                                    <td><span class="status-badge active">En ligne</span></td>
+                                                    <td>3 nouvelles</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="property-info">
+                                                            <div class="property-img">🏢</div>
+                                                            <div class="property-details">
+                                                                <h4>Studio Lyon 3e</h4>
+                                                                <p>28 m² • 1 pièce</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Studio</td>
+                                                    <td>650€/mois</td>
+                                                    <td><span class="status-badge rented">Loué</span></td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="property-info">
+                                                            <div class="property-img">🏡</div>
+                                                            <div class="property-details">
+                                                                <h4>Maison Marseille</h4>
+                                                                <p>85 m² • 4 pièces</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>T4</td>
+                                                    <td>1 200€/mois</td>
+                                                    <td><span class="status-badge pending">En attente</span></td>
+                                                    <td>1 en cours</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab: Demandes -->
+                        <div id="tab-demandes" class="tab-content">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Demandes de contact</h3>
+                                    <a href="#" class="card-action">Tout marquer comme lu</a>
+                                </div>
+                                <div class="card-body" style="padding: 0;">
+                                    <div class="request-item">
+                                        <div class="request-avatar">AS</div>
+                                        <div class="request-info">
+                                            <h4>Association Solidarité Logement</h4>
+                                            <p>Intéressée par votre appartement Paris 11e</p>
+                                            <div class="request-meta">
+                                                <span>📍 Paris</span>
+                                                <span>👥 Famille de 3 personnes</span>
+                                                <span>📅 Il y a 2 heures</span>
+                                            </div>
+                                        </div>
+                                        <span class="request-status new">Nouveau</span>
+                                    </div>
+                                    <div class="request-item">
+                                        <div class="request-avatar">FE</div>
+                                        <div class="request-info">
+                                            <h4>Fondation Emergence</h4>
+                                            <p>Demande de visite pour votre maison Marseille</p>
+                                            <div class="request-meta">
+                                                <span>📍 Marseille</span>
+                                                <span>👥 Sortie d'hébergement</span>
+                                                <span>📅 Il y a 5 heures</span>
+                                            </div>
+                                        </div>
+                                        <span class="request-status new">Nouveau</span>
+                                    </div>
+                                    <div class="request-item">
+                                        <div class="request-avatar">HP</div>
+                                        <div class="request-info">
+                                            <h4>Habitat Partagé</h4>
+                                            <p>Demande d'informations complémentaires</p>
+                                            <div class="request-meta">
+                                                <span>📍 Lyon</span>
+                                                <span>👥 Jeunes actifs</span>
+                                                <span>📅 Hier</span>
+                                            </div>
+                                        </div>
+                                        <span class="request-status viewed">Vue</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab: Historique -->
+                        <div id="tab-historique" class="tab-content">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Activité récente</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="timeline">
+                                        <div class="timeline-item success">
+                                            <div class="timeline-content">
+                                                <h4>Bien loué - Studio Lyon</h4>
+                                                <p>Location signée avec l'association Les Petits Frères</p>
+                                                <div class="timeline-date">15 mars 2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-content">
+                                                <h4>Nouvelle demande reçue</h4>
+                                                <p>Association Solidarité Logement intéressée par Paris 11e</p>
+                                                <div class="timeline-date">14 mars 2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item warning">
+                                            <div class="timeline-content">
+                                                <h4>Document à jour</h4>
+                                                <p>Attestation d'assurance expirante dans 15 jours</p>
+                                                <div class="timeline-date">12 mars 2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-content">
+                                                <h4>Bien mis en ligne</h4>
+                                                <p>Maison Marseille ajoutée à votre espace</p>
+                                                <div class="timeline-date">10 mars 2024</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="side-column">
+                        <!-- Documents -->
+                        <div class="card" style="margin-bottom: 1.5rem;">
+                            <div class="card-header">
+                                <h3 class="card-title">Mes documents</h3>
+                                <a href="#" class="card-action">+ Ajouter</a>
+                            </div>
+                            <div class="card-body" style="padding: 0;">
+                                <div class="document-item">
+                                    <div class="doc-icon pdf">📄</div>
+                                    <div class="doc-info">
+                                        <h4>Titre de propriété - Paris</h4>
+                                        <p>PDF • 2.4 MB • 10/03/2024</p>
+                                    </div>
+                                    <div class="doc-actions">
+                                        <button class="icon-btn">👁</button>
+                                        <button class="icon-btn">⬇</button>
+                                    </div>
+                                </div>
+                                <div class="document-item">
+                                    <div class="doc-icon img">🖼</div>
+                                    <div class="doc-info">
+                                        <h4>Photos - Appartement Paris</h4>
+                                        <p>JPG • 12 fichiers • 08/03/2024</p>
+                                    </div>
+                                    <div class="doc-actions">
+                                        <button class="icon-btn">👁</button>
+                                        <button class="icon-btn">⬇</button>
+                                    </div>
+                                </div>
+                                <div class="document-item">
+                                    <div class="doc-icon doc">📋</div>
+                                    <div class="doc-info">
+                                        <h4>Attestation d'assurance</h4>
+                                        <p>PDF • 890 KB • 01/01/2024</p>
+                                    </div>
+                                    <div class="doc-actions">
+                                        <button class="icon-btn">👁</button>
+                                        <button class="icon-btn">⬇</button>
+                                    </div>
+                                </div>
+                                <div class="document-item">
+                                    <div class="doc-icon pdf">📄</div>
+                                    <div class="doc-info">
+                                        <h4>Diagnostic technique - Lyon</h4>
+                                        <p>PDF • 1.8 MB • 15/02/2024</p>
+                                    </div>
+                                    <div class="doc-actions">
+                                        <button class="icon-btn">👁</button>
+                                        <button class="icon-btn">⬇</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Actions rapides</h3>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                    <a href="#" class="btn btn-outline" style="justify-content: center;">
+                                        📤 Transmettre un document
+                                    </a>
+                                    <a href="#" class="btn btn-outline" style="justify-content: center;">
+                                        📅 Planifier une visite
+                                    </a>
+                                    <a href="#" class="btn btn-outline" style="justify-content: center;">
+                                        💬 Contacter le support
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById('tab-' + tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Section navigation (placeholder)
+        function showSection(section) {
+            // This would normally load different content
+            console.log('Navigation vers:', section);
+        }
+    </script>
+</body>
+</html>

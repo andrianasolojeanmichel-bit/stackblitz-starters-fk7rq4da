@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions Générales d'Utilisation - Propriétaires | ProprioAsso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #0ea5e9;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg: #ffffff;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--bg);
+        }
+
+        /* Navigation identique */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0.75rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-main {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99,102,241,0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* Hero Section */
+        .hero-cgu {
+            padding: 10rem 2rem 4rem;
+            background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%);
+            text-align: center;
+        }
+
+        .hero-cgu h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .hero-cgu .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .last-update {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(99,102,241,0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Content */
+        .cgu-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .cgu-section {
+            margin-bottom: 3rem;
+        }
+
+        .cgu-section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .cgu-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+            color: var(--text);
+        }
+
+        .cgu-section p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .cgu-section ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cgu-section li {
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(99,102,241,0.05) 0%, rgba(14,165,233,0.05) 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: var(--text);
+        }
+
+        .article-number {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #f3f4f6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero-cgu h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="3" y1="3" x2="39" y2="39" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#6366f1"/>
+                            <stop offset="100%" stop-color="#0ea5e9"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="3" y="3" width="36" height="36" rx="10" fill="url(#logoGrad)" opacity="0.1"/>
+                    <rect x="3" y="3" width="36" height="36" rx="10" stroke="url(#logoGrad)" stroke-width="2" fill="none"/>
+                    <path d="M21 8L8 20V32H17V24H25V32H34V20L21 8Z" fill="url(#logoGrad)"/>
+                    <circle cx="12" cy="32" r="3" fill="white"/>
+                    <circle cx="30" cy="32" r="3" fill="white"/>
+                    <circle cx="21" cy="14" r="2" fill="white" opacity="0.8"/>
+                    <path d="M12 32L21 14L30 32" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-main">ProprioAsso</span>
+                    <span class="logo-sub">Plateforme de mise en relation</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#comment-ca-marche">Comment ça marche</a>
+                <a href="index.html#avantages">Avantages</a>
+                <a href="nostarifs.html">Tarifs</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-cta">
+                <a href="proprietaires.html" class="btn btn-outline">Espace Propriétaire</a>
+                <a href="associations.html" class="btn btn-primary">Espace Association</a>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-cgu">
+        <h1>Conditions Générales d'Utilisation</h1>
+        <p class="subtitle">Propriétaires - Version applicable aux bailleurs utilisant la plateforme ProprioAsso</p>
+        <div class="last-update">Dernière mise à jour : 7 mars 2026</div>
+    </section>
+
+    <!-- Content -->
+    <div class="cgu-content">
+
+        <div class="cgu-section">
+            <h2><span class="article-number">1</span>Préambule et Définitions</h2>
+            <p>Les présentes Conditions Générales d'Utilisation (ci-après "CGU") régissent l'utilisation de la plateforme ProprioAsso par les propriétaires bailleurs souhaitant mettre à disposition leur bien immobilier auprès d'associations agréées.</p>
+            
+            <h3>Définitions</h3>
+            <ul>
+                <li><strong>"Plateforme"</strong> : désigne le site internet proprioasso.fr et l'ensemble de ses services</li>
+                <li><strong>"Propriétaire"</strong> : personne physique ou morale propriétaire d'un bien immobilier souhaitant le louer via la plateforme</li>
+                <li><strong>"Association"</strong> : organisme agréé par l'État pour l'intermédiation locative et la gestion locative sociale</li>
+                <li><strong>"Bail Solidaire"</strong> : contrat de location conclu entre le propriétaire et l'association dans le cadre du dispositif d'intermédiation locative</li>
+                <li><strong>"Commission"</strong> : rémunération perçue par ProprioAsso lors de la conclusion d'un bail</li>
+            </ul>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">2</span>Objet et Acceptation</h2>
+            <p>ProprioAsso est une plateforme de mise en relation qui connecte des propriétaires bailleurs avec des associations agréées pour faciliter l'accès au logement de personnes en situation de précarité.</p>
+            
+            <div class="highlight-box">
+                <p><strong>Important :</strong> L'utilisation de la plateforme implique l'acceptation pleine et entière des présentes CGU. Le propriétaire reconnaît avoir pris connaissance des conditions avant toute utilisation du service.</p>
+            </div>
+
+            <p>La plateforme agit uniquement en tant qu'intermédiaire technique et ne participe pas à la relation contractuelle entre le propriétaire et l'association. ProprioAsso n'est ni bailleur, ni locataire, ni garant des obligations réciproques des parties.</p>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">3</span>Conditions d'Éligibilité</h2>
+            <p>Pour utiliser la plateforme en tant que propriétaire, vous devez remplir les conditions suivantes :</p>
+            
+            <h3>3.1. Concernant le propriétaire</h3>
+            <ul>
+                <li>Être propriétaire du bien mis en location ou mandataire habilité</li>
+                <li>Être majeur et capable juridiquement</li>
+                <li>Fournir une pièce d'identité valide et un justificatif de domicile</li>
+                <li>Justifier de sa qualité de propriétaire (titre de propriété ou mandat notarié)</li>
+            </ul>
+
+            <h3>3.2. Concernant le bien immobilier</h3>
+            <ul>
+                <li>Le logement doit être vacant et disponible à la location</li>
+                <li>Il doit respecter les normes de décence définies par la réglementation en vigueur (décret n°2002-120 du 30 janvier 2002 modifié)</li>
+                <li>Le bien doit comporter entre 1 et 5 pièces (T1 à T5)</li>
+                <li>Il doit être loué nu (non meublé), sauf exception conventionnée</li>
+                <li>Le logement doit être situé sur le territoire français</li>
+                <li>Les diagnostics techniques obligatoires (DPE, DDT, etc.) doivent être réalisés et valides</li>
+            </ul>
+
+            <h3>3.3. Exclusions</h3>
+            <p>Sont exclus du dispositif :</p>
+            <ul>
+                <li>Les logements classés F ou G au DPE (passoires énergétiques), sauf engagement de rénovation</li>
+                <li>Les biens situés dans des zones non éligibles aux dispositifs de solidarité</li>
+                <li>Les logements faisant l'objet d'une procédure d'expulsion en cours</li>
+                <li>Les biens sous tutelle ou administration judiciaire</li>
+            </ul>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">4</span>Inscription et Vérification</h2>
+            <p>L'inscription sur la plateforme est gratuite et obligatoire pour accéder aux services. Le processus comprend :</p>
+            
+            <h3>4.1. Création du compte</h3>
+            <ul>
+                <li>Renseignement des informations personnelles et du bien</li>
+                <li>Téléchargement des documents justificatifs (pièce d'identité, titre de propriété, diagnostics)</li>
+                <li>Acceptation des présentes CGU et de la politique de confidentialité</li>
+            </ul>
+
+            <h3>4.2. Vérification des informations</h3>
+            <p>ProprioAsso se réserve le droit de vérifier :</p>
+            <ul>
+                <li>L'identité du propriétaire</li>
+                <li>La propriété du bien ou le mandat détenu</li>
+                <li>La conformité du logement aux normes de décence</li>
+                <li>L'absence de contentieux locatifs en cours</li>
+            </ul>
+            <p>Cette vérification peut être effectuée via des tiers agréés (services d'identification en ligne, bases de données publiques). L'utilisateur consent expressément à ces vérifications.</p>
+
+            <h3>4.3. Validation du compte</h3>
+            <p>La validation du compte est subordonnée à la vérification positive des informations fournies. ProprioAsso se réserve le droit de refuser une inscription sans avoir à en justifier les motifs.</p>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">5</span>Fonctionnement du Service</h2>
+            
+            <h3>5.1. Publication du bien</h3>
+            <p>Le propriétaire peut publier son bien en indiquant :</p>
+            <ul>
+                <li>Les caractéristiques du logement (surface, typologie, étage, ascenseur, etc.)</li>
+                <li>La localisation précise (adresse, code postal, ville)</li>
+                <li>Le loyer mensuel hors charges et les provisions pour charges</li>
+                <li>Les critères souhaités concernant les futurs occupants</li>
+                <li>Des photos récentes et représentatives du bien</li>
+            </ul>
+
+            <h3>5.2. Matching et Propositions</h3>
+            <p>Notre algorithme propose au propriétaire les associations dont les critères correspondent au bien. Le propriétaire conserve l'initiative de contacter l'association de son choix. Aucun bien n'est affiché publiquement.</p>
+
+            <h3>5.3. Visites et États des lieux</h3>
+            <p>Les visites sont organisées directement entre le propriétaire et l'association. L'état des lieux d'entrée est réalisé conjointement et documenté via la plateforme. Les photos et compte-rendus sont conservés pendant toute la durée de la location et 3 ans après.</p>
+
+            <h3>5.4. Signature du bail</h3>
+            <p>Le contrat de location est établi selon les règles du droit civil (non régi par la loi du 6 juillet 1989, l'association étant personne morale). La durée minimale est de 3 ans. La signature peut être effectuée électroniquement via la plateforme.</p>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">6</span>Tarifs et Commission</h2>
+            
+            <h3>6.1. Gratuité de l'inscription</h3>
+            <p>L'inscription, la publication du bien et les échanges avec les associations sont gratuits.</p>
+
+            <h3>6.2. Commission</h3>
+            <p>En cas de signature d'un bail, le propriétaire s'engage à verser à ProprioAsso une commission de <strong>5% hors taxes du montant du loyer mensuel</strong>, payable une seule fois à la signature du contrat.</p>
+
+            <div class="highlight-box">
+                <p><strong>Modalités de paiement :</strong> La commission est prélevée automatiquement lors du premier versement du loyer ou dans un délai de 7 jours suivant la signature du bail. En cas d'échec de prélèvement, le propriétaire dispose d'un délai de 5 jours pour régulariser.</p>
+            </div>
+
+            <h3>6.3. Absence de commission</h3>
+            <p>Aucune commission n'est due si :</p>
+            <ul>
+                <li>Le bail n'est pas signé</li>
+                <li>La location est conclue hors plateforme (contournement)</li>
+                <li>Le bail est résilié dans les 7 jours suivant la signature (délai de rétractation)</li>
+            </ul>
+
+            <h3>6.4. Pénalités de contournement</h3>
+            <p>En cas de conclusion d'un bail avec une association rencontrée via la plateforme, hors utilisation de nos services de signature, le propriétaire s'engage à verser une indemnité forfaitaire de 3 mois de loyer, outre les éventuels dommages et intérêts.</p>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">7</span>Obligations du Propriétaire</h2>
+            
+            <h3>7.1. Information et transparence</h3>
+            <p>Le propriétaire s'engage à :</p>
+            <ul>
+                <li>Fournir des informations exactes, complètes et à jour concernant le bien</li>
+                <li>Signaler tout vice caché ou problème technique connu du logement</li>
+                <li>Respecter les plafonds de loyers fixés par la conventionnement</li>
+                <li>Ne pas pratiquer de discrimination dans l'accès au logement</li>
+            </ul>
+
+            <h3>7.2. Maintenance du bien</h3>
+            <p>Le propriétaire reste responsable :</p>
+            <ul>
+                <li>Des grosses réparations (article 606 du Code civil)</li>
+                <li>De la conformité aux normes de sécurité et de décence</li>
+                <li>Du remboursement des impenses utiles et nécessaires (article 582 du Code civil)</li>
+            </ul>
+
+            <h3>7.3. Assurance</h3>
+            <p>Le propriétaire doit souscrire une assurance propriétaire non occupant (PNO) couvrant les risques locatifs. La preuve d'assurance peut être demandée par l'association.</p>
+
+            <h3>7.4. Respect de la vie privée</h3>
+            <p>Le propriétaire s'interdit de contacter directement les occupants du bien (sous-locataires) sans l'accord de l'association. Toute démarche doit passer par l'intermédiaire de l'association locataire.</p>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">8</span>Garanties et Sécurité</h2>
+            
+            <h3>8.1. Garantie de paiement</h3>
+            <p>L'association s'engage à verser le loyer mensuellement, même en cas de vacance ou de changement d'occupant. ProprioAsso met en place un système de prélèvement automatique et de reversement sécurisé.</p>
+
+            <h3>8.2. Garantie de restitution</h3>
+            <p>À l'expiration du bail, l'association s'engage à restituer le logement :</p>
+            <ul>
+                <li>Libre de tout occupant</li>
+                <li>En bon état d'usage et d'entretien</li>
+                <li>Avec les clés et équipements remis en état de fonctionnement</li>
+            </ul>
+
+            <h3>8.3. Assurance loyers impayés</h3>
+            <p>ProprioAsso peut proposer une assurance loyers impayés couvrant les risques de défaut de paiement de l'association. Les conditions sont détaillées dans la notice d'information spécifique.</p>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">9</span>Durée et Résiliation</h2>
+            
+            <h3>9.1. Durée</h3>
+            <p>Les présentes CGU sont conclues pour une durée indéterminée. Elles entrent en vigueur dès l'acceptation par le propriétaire.</p>
+
+            <h3>9.2. Résiliation par le propriétaire</h3>
+            <p>Le propriétaire peut fermer son compte à tout moment, sous réserve :</p>
+            <ul>
+                <li>De ne pas avoir de bail en cours conclu via la plateforme</li>
+                <li>De régler toutes les commissions dues</li>
+                <li>D'informer les associations avec lesquelles il est en discussion</li>
+            </ul>
+
+            <h3>9.3. Résiliation par ProprioAsso</h3>
+            <p>ProprioAsso se réserve le droit de suspendre ou supprimer un compte en cas de :</p>
+            <ul>
+                <li>Manquement aux présentes CGU</li>
+                <li>Fourniture d'informations fausses ou trompeuses</li>
+                <li>Comportement inapproprié envers une association</li>
+                <li>Contournement de la plateforme</li>
+                <li>Non-paiement des commissions dues</li>
+            </ul>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">10</span>Responsabilité</h2>
+            
+            <h3>10.1. Limitation de responsabilité</h3>
+            <p>ProprioAsso agit en tant qu'intermédiaire technique et ne saurait être tenu responsable :</p>
+            <ul>
+                <li>De la conclusion ou non d'un bail entre les parties</li>
+                <li>Du comportement des utilisateurs (propriétaires ou associations)</li>
+                <li>Des dommages causés par les occupants aux biens ou aux tiers</li>
+                <li>De l'inexécution des obligations par l'une des parties</li>
+                <li>Des perturbations techniques indépendantes de sa volonté</li>
+            </ul>
+
+            <h3>10.2. Force majeure</h3>
+            <p>ProprioAsso ne pourra être tenu responsable de l'inexécution de ses obligations dues à un cas de force majeure tel que défini par la jurisprudence française.</p>
+
+            <h3>10.3. Médiation</h3>
+            <p>En cas de litige, les parties s'engagent à rechercher une solution amiable avant toute action judiciaire. ProprioAsso peut proposer la médiation d'un tiers indépendant.</p>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">11</span>Propriété Intellectuelle</h2>
+            <p>L'ensemble des éléments de la plateforme (logos, textes, graphismes, logiciels) est protégé par le droit de la propriété intellectuelle. Toute reproduction ou représentation, totale ou partielle, sans autorisation expresse est interdite.</p>
+            <p>Le propriétaire concède à ProprioAsso une licence d'utilisation des photographies et descriptions du bien pour la durée de la mise en relation sur la plateforme.</p>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">12</span>Données Personnelles</h2>
+            <p>Les données personnelles collectées sont traitées conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés.</p>
+            <p>Le propriétaire dispose d'un droit d'accès, de rectification, de suppression et de portabilité de ses données. Pour exercer ces droits : privacy@proprioasso.fr</p>
+            <p>Politique de confidentialité détaillée disponible <a href="confidentialite.html">ici</a>.</p>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">13</span>Droit Applicable et Juridiction</h2>
+            <p>Les présentes CGU sont soumises au droit français. En cas de litige, compétence est attribuée aux tribunaux compétents du ressort du siège social de ProprioAsso, sauf disposition légale impérative contraire.</p>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">14</span>Modification des CGU</h2>
+            <p>ProprioAsso se réserve le droit de modifier les présentes CGU à tout moment. Les modifications entrent en vigueur dès leur publication. Le propriétaire est informé des modifications substantielles par email. L'utilisation continue de la plateforme vaut acceptation des nouvelles CGU.</p>
+        </div>
+
+        <div class="cgu-section">
+            <h2><span class="article-number">15</span>Contact</h2>
+            <p>Pour toute question concernant les présentes CGU :</p>
+            <ul>
+                <li>Email : legal@proprioasso.fr</li>
+                <li>Adresse : ProprioAsso - Service Juridique, 128 Boulevard Voltaire, 75011 Paris</li>
+                <li>Téléphone : 01 XX XX XX XX (du lundi au vendredi, 9h-18h)</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>ProprioAsso</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#comment-ca-marche">Comment ça marche</a></li>
+                    <li><a href="proprietaires.html">Espace Propriétaires</a></li>
+                    <li><a href="associations.html">Espace Associations</a></li>
+                    <li><a href="nostarifs.html">Nos Tarifs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="contact.html">Page contact</a></li>
+                    <li><a href="mailto:proprietaires@proprioasso.fr">proprietaires@proprioasso.fr</a></li>
+                    <li><a href="mailto:associations@proprioasso.fr">associations@proprioasso.fr</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="mentions-legales.html">Mentions légales</a></li>
+                    <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+                    <li><a href="cgu-proprietaires.html">CGU Propriétaires</a></li>
+                    <li><a href="cgu-associations.html">CGU Associations</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ProprioAsso. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

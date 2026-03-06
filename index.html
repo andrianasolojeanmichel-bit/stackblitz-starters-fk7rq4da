@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProprioAsso - La plateforme de logement solidaire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #0ea5e9;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg: #ffffff;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--bg);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0.75rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-main {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99,102,241,0.2);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 2rem 6rem;
+            background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-logo {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99,102,241,0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(99,102,241,0.2);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            opacity: 0.6;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* How It Works */
+        .process {
+            padding: 6rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .process-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .process-step h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-step p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-light);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        }
+
+        .testimonial-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.1;
+            position: absolute;
+            top: -5px;
+            left: 20px;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 6rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+            color: var(--primary);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* CONTACT BANNER SECTION - CORRIGÉ */
+        .contact-banner-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0f9ff 100%);
+        }
+
+        .contact-banner-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-banner-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .contact-banner-content > p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .contact-banner-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-banner-buttons .btn {
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+        }
+
+        .contact-banner-info {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .contact-item .icon {
+            width: 44px;
+            height: 44px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .contact-item div strong {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-item div p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .contact-banner-visual {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .team-avatars {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding-left: 15px;
+        }
+
+        .team-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+            border: 4px solid white;
+            margin-left: -15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .team-avatar:first-child {
+            margin-left: 0;
+        }
+
+        .team-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, #3730a3 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section .btn {
+            background: white;
+            color: var(--primary);
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+        }
+
+        .cta-section .btn:hover {
+            background: var(--bg-light);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #f3f4f6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .contact-banner-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-banner-content {
+                text-align: center;
+            }
+
+            .contact-banner-content > p {
+                max-width: 100%;
+            }
+
+            .contact-banner-buttons {
+                justify-content: center;
+            }
+
+            .contact-banner-info {
+                justify-content: center;
+            }
+
+            .contact-banner-content h2 {
+                font-size: 1.75rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="3" y1="3" x2="39" y2="39" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#6366f1"/>
+                            <stop offset="100%" stop-color="#0ea5e9"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="3" y="3" width="36" height="36" rx="10" fill="url(#logoGrad)" opacity="0.1"/>
+                    <rect x="3" y="3" width="36" height="36" rx="10" stroke="url(#logoGrad)" stroke-width="2" fill="none"/>
+                    <path d="M21 8L8 20V32H17V24H25V32H34V20L21 8Z" fill="url(#logoGrad)"/>
+                    <circle cx="12" cy="32" r="3" fill="white"/>
+                    <circle cx="30" cy="32" r="3" fill="white"/>
+                    <circle cx="21" cy="14" r="2" fill="white" opacity="0.8"/>
+                    <path d="M12 32L21 14L30 32" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-main">ProprioAsso</span>
+                    <span class="logo-sub">Plateforme de mise en relation</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="#comment-ca-marche">Comment ça marche</a>
+                <a href="#avantages">Avantages</a>
+                <a href="#temoignages">Témoignages</a>
+                <a href="#faq">FAQ</a>
+                <a href="contact.html">Contact</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="nav-cta">
+                <a href="proprietaires.html" class="btn btn-outline">Espace Propriétaire</a>
+                <a href="associations.html" class="btn btn-primary">Espace Association</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="alert('Menu mobile')">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🚀</span>
+                <span>La 1ère plateforme dédiée au logement solidaire</span>
+            </div>
+
+            <svg class="hero-logo" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="heroGrad" x1="5" y1="5" x2="85" y2="85" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#6366f1"/>
+                        <stop offset="100%" stop-color="#0ea5e9"/>
+                    </linearGradient>
+                </defs>
+                <rect x="5" y="5" width="80" height="80" rx="20" fill="url(#heroGrad)" opacity="0.1"/>
+                <rect x="5" y="5" width="80" height="80" rx="20" stroke="url(#heroGrad)" stroke-width="3" fill="none"/>
+                <path d="M45 15L15 40V65H35V50H55V65H75V40L45 15Z" fill="url(#heroGrad)"/>
+                <circle cx="25" cy="65" r="5" fill="white"/>
+                <circle cx="65" cy="65" r="5" fill="white"/>
+                <circle cx="45" cy="28" r="3" fill="white" opacity="0.8"/>
+                <path d="M25 65L45 28L65 65" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            </svg>
+
+            <h1>La plateforme qui <span>connecte</span> les propriétaires et les associations</h1>
+            <p class="hero-subtitle">
+                ProprioAsso met en relation des propriétaires bienveillants avec des associations 
+                pour faciliter l'accès au logement des personnes en situation de précarité. 
+                Une solution simple, sécurisée et solidaire.
+            </p>
+            <div class="hero-cta">
+                <a href="proprietaires.html" class="btn btn-primary btn-large">
+                    Je suis propriétaire →
+                </a>
+                <a href="associations.html" class="btn btn-secondary btn-large">
+                    Je suis une association →
+                </a>
+            </div>
+            
+            <div class="trust-badges">
+                <span class="trust-badge">🔒 Sécurisé</span>
+                <span class="trust-badge">✓ Vérifié</span>
+                <span class="trust-badge">🏆 Award 2024</span>
+                <span class="trust-badge">🤝 500+ connexions réussies</span>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Mises en relation réussies</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">350</span>
+                    <span class="stat-label">Propriétaires actifs</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">120</span>
+                    <span class="stat-label">Associations partenaires</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="process" id="comment-ca-marche">
+        <div class="section-header">
+            <h2>Comment fonctionne la plateforme ?</h2>
+            <p>Un processus simple et sécurisé en 4 étapes pour connecter les bonnes personnes</p>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Inscription</h3>
+                <p>Créez votre compte gratuitement en 2 minutes selon votre profil : propriétaire ou association</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Vérification</h3>
+                <p>Notre équipe vérifie votre profil et vos documents pour garantir la sécurité de tous</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Matching</h3>
+                <p>Notre algorithme exclusif vous propose les meilleures correspondances solidaires</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Connexion</h3>
+                <p>Entrez en contact direct et bénéficiez de notre accompagnement tout au long du processus</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="avantages">
+        <div class="section-header">
+            <h2>Pourquoi choisir notre plateforme ?</h2>
+            <p>Les avantages de passer par ProprioAsso pour vos démarches de logement solidaire</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Matching intelligent</h3>
+                <p>Notre algorithme analyse vos critères pour vous proposer les correspondances les plus pertinentes et compatibles.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Sécurité garantie</h3>
+                <p>Tous les profils sont vérifiés et validés par notre équipe. Vous entrez en relation avec des interlocuteurs de confiance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Accompagnement dédié</h3>
+                <p>Une équipe d'experts vous accompagne à chaque étape, de la première connexion jusqu'à la signature du bail.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Gain de temps</h3>
+                <p>Finies les recherches interminables. Trouvez votre correspondance idéale en quelques clics, pas en quelques mois.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Gratuit pour les associations</h3>
+                <p>Les associations peuvent utiliser la plateforme gratuitement. Seuls les propriétaires contribuent modestement au fonctionnement.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Impact mesurable</h3>
+                <p>Suivez en temps réel l'impact de votre démarche : logements trouvés, personnes accompagnées, vies changées.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="temoignages">
+        <div class="section-header">
+            <h2>Ils utilisent notre plateforme</h2>
+            <p>Découvrez les témoignages de propriétaires et associations qui se sont connectés via ProprioAsso</p>
+        </div>
+
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "Grâce à ProprioAsso, j'ai trouvé une association sérieuse en moins d'une semaine. 
+                    La plateforme m'a fait gagner un temps précieux et l'accompagnement est vraiment professionnel."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MD</div>
+                    <div class="author-info">
+                        <h4>Marie Dubois</h4>
+                        <p>Propriétaire à Paris</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "Avant ProprioAsso, nous perdions des mois à chercher des logements. 
+                    Maintenant, la plateforme nous envoie directement les biens correspondant à nos critères. Un game changer !"
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JL</div>
+                    <div class="author-info">
+                        <h4>Jean Lefebvre</h4>
+                        <p>Directeur, Association Solidarité Logement</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "Le système de matching est impressionnant. J'ai été mise en relation avec une association 
+                    dont les valeurs correspondent parfaitement aux miennes. Le processus est fluide et rassurant."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SM</div>
+                    <div class="author-info">
+                        <h4>Sophie Martin</h4>
+                        <p>Propriétaire à Lyon</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="section-header">
+            <h2>Questions fréquentes</h2>
+            <p>Tout ce que vous devez savoir sur le fonctionnement de notre plateforme</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Comment fonctionne le matching sur la plateforme ?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Notre algorithme analyse les critères des propriétaires (type de bien, localisation, loyer souhaité) 
+                    et les besoins des associations (profil des personnes accompagnées, critères d'accessibilité, etc.) 
+                    pour proposer les meilleures correspondances. Chaque suggestion est validée manuellement par notre équipe 
+                    avant d'être envoyée.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>La plateforme est-elle vraiment gratuite pour les associations ?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Oui, l'inscription et l'utilisation de la plateforme sont 100% gratuites pour les associations. 
+                    Les coûts de fonctionnement sont couverts par une contribution modeste des propriétaires, 
+                    uniquement lorsqu'une mise en relation aboutit à un bail signé.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Comment assurez-vous la sécurité des échanges ?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Tous les utilisateurs sont soumis à une vérification d'identité rigoureuse : pièce d'identité, 
+                    justificatif de domicile pour les propriétaires, et agrément ou statut pour les associations. 
+                    Les échanges se font via notre messagerie sécurisée et nous accompagnons les premiers contacts 
+                    pour garantir la confiance réciproque.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Que se passe-t-il après la mise en relation ?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Après la mise en relation initiale, vous entrez en contact direct pour visiter le bien et 
+                    discuter des modalités. Notre équipe reste disponible pour accompagner la rédaction du bail, 
+                    vérifier les garanties, et faciliter les démarches administratives. Nous suivons chaque dossier 
+                    jusqu'à la signature et au-delà.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT BANNER SECTION -->
+    <section class="contact-banner-section">
+        <div class="contact-banner-container">
+            <div class="contact-banner-content">
+                <h2>Une question ? Contactez notre équipe</h2>
+                <p>Nos experts sont disponibles du lundi au vendredi pour vous accompagner dans vos démarches.</p>
+                
+                <div class="contact-banner-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <span>🏠</span>
+                        Nous contacter
+                    </a>
+                    <a href="nostarifs.html" class="btn btn-primary">
+                      <span>🏠</span>
+                      Nos Tarifs
+                  </a>
+                </div>
+                
+                <div class="contact-banner-info">
+                    <div class="contact-item">
+                        <span class="icon">📞</span>
+                        <div>
+                            <strong>Un sourire au bout du fil</strong>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">✉️</span>
+                        <div>
+                            <strong>Contact rapide et facile</strong>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">🕐</span>
+                        <div>
+                            <strong>Toujours à l'heure !</strong>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-banner-visual">
+                <div class="team-avatars">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">CS</div>
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">TM</div>
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #10b981, #34d399);">SB</div>
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">AL</div>
+                </div>
+                <p class="team-text">Notre équipe vous répond sous 24h</p> 
+                <p class="team-text">Lun-Ven • 9h-18h</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Prêt à vous engager ?</h2>
+        <p>Rejoignez la première plateforme dédiée au logement solidaire. 
+           Des centaines d'associations n'attendent que vous !</p>
+        <a href="proprietaires.html" class="btn">Créer mon compte gratuitement</a>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>ProprioAsso</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="comment-ca-marche.html">Comment ça marche</a></li>
+                    <li><a href="proprietaires.html">Espace Propriétaires</a></li>
+                    <li><a href="associations.html">Espace Associations</a></li>
+                    <li><a href="nostarifs.html">Nos Tarifs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="contact.html">Plus d'informations</a></li>
+                    <li><a href="*">Nos bureaux</a></li>
+                    <li><a href="*">Qui sommes nous</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <ul>
+                    <li><a href="#">Guide du propriétaire</a></li>
+                    <li><a href="#">Guide de l'association</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="*">Politique de confidentialité</a></li>
+                    <li><a href="cguproprio.html">CGU Propriétaire</a></li>
+                    <li><a href="cguasso.html">CGU Association</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ProprioAsso. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle Function
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+            });
+            
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
