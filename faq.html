@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Questions Fréquentes | ProprioAsso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #0ea5e9;
+            --secondary-light: #38bdf8;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg: #ffffff;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--bg);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0.75rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-main {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99,102,241,0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* Hero Section */
+        .hero-faq {
+            padding: 10rem 2rem 4rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0f9ff 100%);
+            text-align: center;
+        }
+
+        .hero-faq h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .hero-faq p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        /* Tab Navigation */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            background: white;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .tab-btn .icon {
+            font-size: 1.25rem;
+        }
+
+        /* FAQ Content */
+        .faq-content {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem 6rem;
+        }
+
+        .faq-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .section-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .proprietaires-section .section-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .associations-section .section-icon {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+        }
+
+        .section-intro h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-intro p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* FAQ Categories */
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text);
+        }
+
+        .category-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            border-radius: 2px;
+        }
+
+        .proprietaires-section .category-title::before {
+            background: var(--primary);
+        }
+
+        .associations-section .category-title::before {
+            background: var(--secondary);
+        }
+
+        /* FAQ Items */
+        .faq-item {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-light);
+        }
+
+        .faq-question-text {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-right: 1rem;
+        }
+
+        .faq-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .proprietaires-section .faq-number {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+
+        .associations-section .faq-number {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--secondary);
+        }
+
+        .faq-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .proprietaires-section .faq-toggle {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+
+        .associations-section .faq-toggle {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--secondary);
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            background: var(--bg-light);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .faq-answer-content p {
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            border-left: 4px solid;
+        }
+
+        .proprietaires-section .highlight-box {
+            border-left-color: var(--primary);
+        }
+
+        .associations-section .highlight-box {
+            border-left-color: var(--secondary);
+        }
+
+        .highlight-box strong {
+            color: var(--text);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-cta h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #f3f4f6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-faq h1 {
+                font-size: 2rem;
+            }
+
+            .tab-btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .faq-question {
+                padding: 1.25rem;
+            }
+
+            .faq-number {
+                display: none;
+            }
+
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="3" y1="3" x2="39" y2="39" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#6366f1"/>
+                            <stop offset="100%" stop-color="#0ea5e9"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="3" y="3" width="36" height="36" rx="10" fill="url(#logoGrad)" opacity="0.1"/>
+                    <rect x="3" y="3" width="36" height="36" rx="10" stroke="url(#logoGrad)" stroke-width="2" fill="none"/>
+                    <path d="M21 8L8 20V32H17V24H25V32H34V20L21 8Z" fill="url(#logoGrad)"/>
+                    <circle cx="12" cy="32" r="3" fill="white"/>
+                    <circle cx="30" cy="32" r="3" fill="white"/>
+                    <circle cx="21" cy="14" r="2" fill="white" opacity="0.8"/>
+                    <path d="M12 32L21 14L30 32" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-main">ProprioAsso</span>
+                    <span class="logo-sub">Plateforme de mise en relation</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#comment-ca-marche">Comment ça marche</a>
+                <a href="nostarifs.html">Tarifs</a>
+                <a href="faq.html" style="color: var(--primary);">FAQ</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-cta">
+                <a href="inscription-proprietaire.html" class="btn btn-outline">Espace Propriétaire</a>
+                <a href="inscription-association.html" class="btn btn-primary">Espace Association</a>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-faq">
+        <h1>Questions fréquentes</h1>
+        <p>Trouvez rapidement les réponses à vos questions selon votre profil</p>
+        
+        <div class="search-container">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="text" class="search-input" placeholder="Rechercher une question..." id="searchInput" onkeyup="searchFAQ()">
+        </div>
+
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="switchTab('proprietaires')">
+                <span class="icon">🏠</span>
+                <span>Espace Propriétaires</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('associations')">
+                <span class="icon">🤝</span>
+                <span>Espace Associations</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- FAQ Propriétaires -->
+    <div class="faq-content proprietaires-section active" id="proprietaires">
+        
+        <div class="section-intro">
+            <div class="section-icon">🏠</div>
+            <h2>FAQ Propriétaires</h2>
+            <p>Tout ce que vous devez savoir pour louer votre bien en toute sérénité via notre plateforme de logement solidaire.</p>
+        </div>
+
+        <!-- Catégorie : Démarrage -->
+        <div class="faq-category">
+            <h3 class="category-title">🚀 Démarrage et inscription</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">01</span>
+                        <span>Comment puis-je m'inscrire sur ProprioAsso ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>L'inscription se fait en quelques étapes simples :</p>
+                        <ul>
+                            <li>Cliquez sur "Espace Propriétaire" puis "Créer un compte"</li>
+                            <li>Remplissez le formulaire avec vos informations personnelles</li>
+                            <li>Téléchargez les documents requis (pièce d'identité, justificatif de propriété)</li>
+                            <li>Validez votre email</li>
+                            <li>Attendez la validation de votre compte (sous 24h ouvrées)</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <strong>💡 Bon à savoir</strong>
+                            L'inscription est entièrement gratuite. Vous ne payez que si vous signez un bail (5% du loyer mensuel).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">02</span>
+                        <span>Quels documents dois-je fournir pour m'inscrire ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Pour vérifier votre identité et votre qualité de propriétaire, nous demandons :</p>
+                        <ul>
+                            <li>Une pièce d'identité valide (CNI, passeport)</li>
+                            <li>Un justificatif de domicile de moins de 3 mois</li>
+                            <li>Le titre de propriété ou l'attestation notariée</li>
+                            <li>Les diagnostics techniques obligatoires (DPE, DDT)</li>
+                            <li>Un RIB pour les versements de loyer</li>
+                        </ul>
+                        <p>Tous les documents sont sécurisés et cryptés selon les normes en vigueur.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">03</span>
+                        <span>Combien de temps dure la validation de mon compte ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>La validation de votre compte est généralement effectuée sous <strong>24 heures ouvrées</strong> après réception de tous les documents.</p>
+                        <p>Notre équipe vérifie :</p>
+                        <ul>
+                            <li>L'authenticité de votre identité</li>
+                            <li>Votre qualité de propriétaire du bien</li>
+                            <li>La conformité du logement aux normes de décence</li>
+                        </ul>
+                        <p>Vous recevrez un email de confirmation dès que votre compte sera actif.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Catégorie : Tarifs et Commission -->
+        <div class="faq-category">
+            <h3 class="category-title">💰 Tarifs et commission</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">04</span>
+                        <span>Combien coûte le service ProprioAsso ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Notre tarification est simple et transparente :</p>
+                        <div class="highlight-box">
+                            <strong>Commission de 5% HT du loyer mensuel</strong>
+                            Payable une seule fois, uniquement à la signature du bail. Aucun frais caché, aucun abonnement.
+                        </div>
+                        <p>Exemple : Pour un loyer de 800€/mois, la commission est de 40€ HT (soit 48€ TTC).</p>
+                        <p>Cette commission couvre :</p>
+                        <ul>
+                            <li>La mise en relation avec des associations vérifiées</li>
+                            <li>L'accompagnement tout au long du processus</li>
+                            <li>La rédaction et la signature électronique du bail</li>
+                            <li>La gestion des paiements automatisés</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">05</span>
+                        <span>Quand dois-je payer la commission ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>La commission de 5% est prélevée <strong>automatiquement lors du premier versement du loyer</strong> par l'association.</p>
+                        <p>Si le bail n'est pas signé, vous ne payez <strong>absolument rien</strong>. Notre rémunération est uniquement liée à la réussite de la mise en relation.</p>
+                        <p>En cas de paiement échelonné, la commission peut être répartie sur 3 mois sans frais supplémentaires.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">06</span>
+                        <span>La commission est-elle déductible des impôts ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Oui, la commission ProprioAsso est considérée comme une <strong>charge déductible de vos revenus fonciers</strong>.</p>
+                        <p>Vous recevrez une facture conforme que vous pourrez joindre à votre déclaration fiscale. Cette déduction s'applique dans les mêmes conditions que les frais d'agence immobilière traditionnelle.</p>
+                        <p>Nous vous conseillons de conserver votre facture pendant 5 ans conformément aux obligations fiscales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Catégorie : Sécurité et Garanties -->
+        <div class="faq-category">
+            <h3 class="category-title">🛡️ Sécurité et garanties</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">07</span>
+                        <span>Mon loyer est-il garanti ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p><strong>Oui, votre loyer est garanti.</strong> L'association s'engage à verser le loyer mensuellement, quelle que soit la situation :</p>
+                        <ul>
+                            <li>✅ En cas de vacance du logement (changement de bénéficiaire)</li>
+                            <li>✅ En cas de retard de paiement de la part du bénéficiaire</li>
+                            <li>✅ Même si le logement est temporairement inoccupé</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <strong>🎯 L'association est votre unique locataire</strong>
+                            Elle assume l'entière responsabilité du paiement du loyer, vous n'avez aucun recours à exercer contre les occupants.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">08</span>
+                        <span>Que se passe-t-il si le bien est dégradé ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>L'association est responsable de la bonne conservation du bien et assume les obligations d'entretien courant.</p>
+                        <p>À la sortie, l'association s'engage à :</p>
+                        <ul>
+                            <li>Restituer le logement propre et en bon état</li>
+                            <li>Remettre en état les éventuelles dégradations</li>
+                            <li>Vous reverser le dépôt de garantie (si applicable) déduction faite des éventuelles réparations</li>
+                        </ul>
+                        <p>Un état des lieux contradictoire est réalisé à l'entrée et à la sortie, documenté par photos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">09</span>
+                        <span>Quelle est la durée minimale du bail ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Le bail conclu avec l'association est un <strong>bail civil de 3 ans minimum</strong>, renouvelable tacitement.</p>
+                        <p>Ce bail n'est pas soumis à la loi du 6 juillet 1989 (car l'association est une personne morale), ce qui offre plus de flexibilité :</p>
+                        <ul>
+                            <li>Durée déterminée de 3 ans minimum</li>
+                            <li>Loyer révisable annuellement selon l'IRL</li>
+                            <li>Conditions de résiliation définies contractuellement</li>
+                        </ul>
+                        <p>À l'issue des 3 ans, le bail se poursuit tacitement par périodes d'un an.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Catégorie : Le Logement -->
+        <div class="faq-category">
+            <h3 class="category-title">🏠 Le logement et les occupants</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">10</span>
+                        <span>Quels types de biens puis-je proposer ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Vous pouvez proposer des logements de type :</p>
+                        <ul>
+                            <li>Studio (T1) à 5 pièces (T5)</li>
+                            <li>Appartement ou maison</li>
+                            <li>Logement vide ou meublé (selon conventions)</li>
+                        </ul>
+                        <p>Le logement doit respecter les <strong>normes de décence</strong> :</p>
+                        <ul>
+                            <li>Surface minimum : 9m² pour une personne, 16m² pour deux</li>
+                            <li>Équipement sanitaire fonctionnel</li>
+                            <li>Chauffage et éclairage naturel</li>
+                            <li>Absence de danger pour la santé</li>
+                        </ul>
+                        <p>⚠️ Les logements classés F ou G au DPE (passoires énergétiques) ne sont pas éligibles sauf travaux de rénovation engagés.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">11</span>
+                        <span>Puis-je choisir l'association qui occupera mon bien ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p><strong>Oui, vous gardez le contrôle total.</strong> Notre algorithme vous propose les associations dont les critères correspondent à votre bien, mais c'est vous qui décidez :</p>
+                        <ul>
+                            <li>De consulter les profils des associations intéressées</li>
+                            <li>D'accepter ou de refuser une proposition</li>
+                            <li>De rencontrer l'association avant de vous engager</li>
+                            <li>De visiter d'autres biens gérés par cette association</li>
+                        </ul>
+                        <p>Aucune mise en relation n'est automatique : vous validez chaque étape.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">12</span>
+                        <span>Qui sont les occupants de mon logement ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Les occupants sont des <strong>personnes ou familles en situation de précarité</strong>, accompagnées par l'association :</p>
+                        <ul>
+                            <li>Personnes sortant de la rue (hébergement d'urgence)</li>
+                            <li>Jeunes en difficulté d'insertion</li>
+                            <li>Familles en attente de logement social</li>
+                            <li>Personnes victimes de violences</li>
+                            <li>Travailleurs précaires</li>
+                        </ul>
+                        <p>L'association assure un <strong>accompagnement social renforcé</strong> : suivi personnalisé, aide administrative, préparation à l'autonomie. Les occupants sont sélectionnés selon des critères objectifs et suivis régulièrement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="no-results" id="noResultsProprietaires">
+            <p>Aucune question ne correspond à votre recherche.</p>
+            <p>Contactez-nous directement pour obtenir une réponse personnalisée.</p>
+        </div>
+
+    </div>
+
+    <!-- FAQ Associations -->
+    <div class="faq-content associations-section" id="associations">
+        
+        <div class="section-intro">
+            <div class="section-icon">🤝</div>
+            <h2>FAQ Associations</h2>
+            <p>Tout ce que vous devez savoir pour trouver des logements adaptés pour vos bénéficiaires via notre plateforme.</p>
+        </div>
+
+        <!-- Catégorie : Inscription et Agrément -->
+        <div class="faq-category">
+            <h3 class="category-title">📋 Inscription et agrément</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">01</span>
+                        <span>Quelles sont les conditions pour m'inscrire ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Pour vous inscrire sur ProprioAsso, votre structure doit :</p>
+                        <ul>
+                            <li>Être agréée par l'État pour l'<strong>intermédiation locative</strong> (arrêté préfectoral)</li>
+                            <li>Être conventionnée avec l'<strong>ANAH</strong> (hors Île-de-France) ou la <strong>DRIHL</strong> (Île-de-France)</li>
+                            <li>Justifier d'une expérience dans l'accompagnement de publics précaires</li>
+                            <li>Détenir une assurance responsabilité civile professionnelle</li>
+                            <li>Fournir une garantie financière pour les fonds détenus</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <strong>⏱️ Délai de validation</strong>
+                            Votre inscription est validée sous 24h ouvrées après vérification de vos documents (statuts, arrêté d'agrément, convention).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">02</span>
+                        <span>Quels documents dois-je fournir ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Lors de votre inscription, vous devez télécharger :</p>
+                        <ul>
+                            <li>Les statuts de l'association et le récépissé RNA</li>
+                            <li>L'arrêté préfectoral d'agrément pour l'intermédiation locative</li>
+                            <li>La convention en cours avec l'ANAH ou la DRIHL</li>
+                            <li>L'attestation d'assurance responsabilité civile</li>
+                            <li>Le justificatif de garantie financière</li>
+                            <li>La carte professionnelle de gestionnaire (si applicable)</li>
+                        </ul>
+                        <p>Ces documents sont sécurisés et conservés pendant la durée de votre utilisation de la plateforme.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">03</span>
+                        <span>Puis-je utiliser ProprioAsso sans être conventionnée ANAH/DRIHL ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p><strong>Non</strong>, le conventionnement ANAH ou DRIHL est obligatoire pour utiliser notre plateforme. Ce conventionnement garantit :</p>
+                        <ul>
+                            <li>Le respect du cadre légal de l'intermédiation locative</li>
+                            <li>L'éligibilité de vos bénéficiaires aux aides au logement (APL/AL)</li>
+                            <li>La sécurité juridique pour les propriétaires</li>
+                            <li>L'accès aux financements publics</li>
+                        </ul>
+                        <p>Si vous n'êtes pas encore conventionnée, nous vous invitons à contacter l'ANAH ou votre DRIHL territoriale pour initier la démarche.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Catégorie : Tarifs et Commission -->
+        <div class="faq-category">
+            <h3 class="category-title">💰 Tarifs et commission</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">04</span>
+                        <span>Combien coûte le service pour les associations ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Notre tarification est un <strong>forfait fixe de 1000€ HT par bien loué et signé</strong>, quel que soit :</p>
+                        <ul>
+                            <li>Le montant du loyer (500€ ou 1500€, le prix reste identique)</li>
+                            <li>La typologie du logement (T1, T2, T3, etc.)</li>
+                            <li>La localisation (Paris ou province)</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <strong>💡 Avantage budgétaire</strong>
+                            Ce forfait fixe vous permet de maîtriser vos coûts et d'anticiper votre budget indépendamment du loyer du bien.
+                        </div>
+                        <p>Le forfait est payable à la signature du bail ou en 3 échelonnements sans frais.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">05</span>
+                        <span>Y a-t-il des tarifs dégressifs pour les volumes ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Oui, nous proposons des tarifs dégressifs pour les structures actives :</p>
+                        <ul>
+                            <li><strong>1 à 9 biens/an</strong> : 1000€ HT par bien (tarif standard)</li>
+                            <li><strong>10 à 20 biens/an</strong> : 900€ HT par bien (-10%)</li>
+                            <li><strong>21 à 50 biens/an</strong> : 800€ HT par bien (-20%)</li>
+                            <li><strong>Plus de 50 biens/an</strong> : tarif personnalisé sur devis</li>
+                        </ul>
+                        <p>Le comptage se fait sur l'année civile (de janvier à décembre). Les factures sont ajustées automatiquement selon votre volume.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">06</span>
+                        <span>La commission est-elle eligible aux financements publics ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p><strong>Oui</strong>, le forfait ProprioAsso est considéré comme un <strong>coût de fonctionnement lié à la recherche de logement</strong> et peut être intégré dans :</p>
+                        <ul>
+                            <li>Les budgets de fonctionnement conventionnés ANAH/DRIHL</li>
+                            <li>Les demandes de subventions de fonctionnement</li>
+                            <li>Les coûts de gestion locative répercutés sur le différentiel de loyer</li>
+                        </ul>
+                        <p>Nous fournissons des factures conformes aux exigences des financeurs publics. N'hésitez pas à nous contacter pour toute précision sur le plan comptable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Catégorie : Dispositif IL -->
+        <div class="faq-category">
+            <h3 class="category-title">🏠 Dispositif d'intermédiation locative</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">07</span>
+                        <span>Quelle est la durée maximale d'occupation par bénéficiaire ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>La durée maximale d'occupation est fixée par la réglementation :</p>
+                        <ul>
+                            <li><strong>Île-de-France</strong> : 18 mois maximum (renouvelable par périodes de 3 mois)</li>
+                            <li><strong>Hors Île-de-France</strong> : 3 ans maximum (conventionnement ANAH)</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <strong>🎯 Objectif : l'autonomie</strong>
+                            Au-delà de ces durées, le ménage doit être orienté vers un logement pérenne (logement social ou privé). L'IL est une étape transitoire, pas une destination.
+                        </div>
+                        <p>L'accompagnement social vise à préparer le ménage à cette sortie tout au long du séjour.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">08</span>
+                        <span>Quels sont les plafonds de ressources des bénéficiaires ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Les plafonds de ressources sont définis par votre conventionnement :</p>
+                        <ul>
+                            <li><strong>ANAH</strong> : Plafonds fixés selon la zone géographique et la composition du ménage (référence aux barèmes ANAH)</li>
+                            <li><strong>DRIHL</strong> : Plafonds propres à chaque convention tripartite</li>
+                        </ul>
+                        <p>En général, les ressources mensuelles du ménage ne doivent pas dépasser :</p>
+                        <ul>
+                            <li>1 personne : environ 1 500€ à 2 000€ selon les zones</li>
+                            <li>2 personnes : environ 2 000€ à 2 800€</li>
+                            <li>+ 400€ à 600€ par personne supplémentaire</li>
+                        </ul>
+                        <p>Les allocations logement (APL/AL) ne sont pas comptabilisées dans les ressources.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">09</span>
+                        <span>Comment fixer la participation financière du ménage ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>La participation du ménage est fixée selon les règles du conventionnement :</p>
+                        <ul>
+                            <li><strong>Maximum 30%</strong> des ressources du ménage (après déduction des APL/AL)</li>
+                            <li>Elle doit couvrir les charges locatives (eau, électricité, etc.)</li>
+                            <li>Elle peut être réduite selon les situations (ménages très précaires)</li>
+                        </ul>
+                        <p>Exemple : Un ménage avec 1 200€ de ressources et 400€ d'APL pourra payer entre 0€ et 240€ de participation (soit 20% de 800€ restant).</p>
+                        <p>Le différentiel entre le loyer au propriétaire et la participation du ménage constitue votre marge pour la gestion et l'accompagnement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Catégorie : Gestion Locative -->
+        <div class="faq-category">
+            <h3 class="category-title">📋 Gestion locative et accompagnement</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">10</span>
+                        <span>Quelles sont mes obligations en tant que gestionnaire ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>En tant qu'intermédiaire locataire, vous assumez :</p>
+                        <ul>
+                            <li><strong>Envers le propriétaire</strong> : Payer le loyer mensuellement, assurer l'entretien courant, restituer le logement en bon état</li>
+                            <li><strong>Envers le bénéficiaire</strong> : Assurer un accompagnement social personnalisé, garantir la décence du logement, respecter la durée maximale d'occupation</li>
+                            <li><strong>Administratives</strong> : Gérer les états des lieux, les déclarations CAF, les régularisations de charges</li>
+                        </ul>
+                        <p>Vous devez souscrire une assurance multirisque locative couvrant les dommages au bien et une garantie financière pour les fonds détenus.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">11</span>
+                        <span>Comment fonctionne le versement des loyers ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>ProprioAsso met en place un système de <strong>prélèvement automatique et de reversement sécurisé</strong> :</p>
+                        <ol>
+                            <li>Vous recevez les APL/AL en tiers payant</li>
+                            <li>Le bénéficiaire vous verse sa participation</li>
+                            <li>ProprioAsso prélève automatiquement le loyer sur votre compte</li>
+                            <li>Le loyer est reversé au propriétaire sous 48h</li>
+                        </ol>
+                        <div class="highlight-box">
+                            <strong>📊 Tableau de bord</strong>
+                            Vous suivez en temps réel tous les paiements, quittances et régularisations depuis votre espace personnel.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question-text">
+                        <span class="faq-number">12</span>
+                        <span>Que se passe-t-il en cas de dégradation du logement ?</span>
+                    </div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Vous êtes responsable de la bonne conservation du bien :</p>
+                        <ul>
+                            <li><strong>Entretien courant</strong> : Réparations locatives, petits dégâts (à charge de l'association)</li>
+                            <li><strong>Dégradations importantes</strong> : L'assurance multirisque couvre les sinistres selon les conditions du contrat</li>
+                            <li><strong>Dépôt de garantie</strong> : Vous pouvez exiger un dépôt de garantie au bénéficiaire (maximum 1 mois de participation)</li>
+                        </ul>
+                        <p>Un état des lieux contradictoire est réalisé à l'entrée et à la sortie, documenté par photos. En cas de dégradations, vous engagez la responsabilité du bénéficiaire selon la procédure classique.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="no-results" id="noResultsAssociations">
+            <p>Aucune question ne correspond à votre recherche.</p>
+            <p>Contactez-nous directement pour obtenir une réponse personnalisée.</p>
+        </div>
+
+    </div>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <h2>Vous ne trouvez pas votre réponse ?</h2>
+        <p>Notre équipe est disponible du lundi au vendredi, de 9h à 18h, pour répondre à toutes vos questions.</p>
+        <a href="contact.html" class="btn-white">Nous contacter</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>ProprioAsso</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#comment-ca-marche">Comment ça marche</a></li>
+                    <li><a href="proprietaires.html">Espace Propriétaires</a></li>
+                    <li><a href="associations.html">Espace Associations</a></li>
+                    <li><a href="nostarifs.html">Nos Tarifs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="contact.html">Page contact</a></li>
+                    <li><a href="mailto:proprietaires@proprioasso.fr">proprietaires@proprioasso.fr</a></li>
+                    <li><a href="mailto:associations@proprioasso.fr">associations@proprioasso.fr</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#">Guide du propriétaire</a></li>
+                    <li><a href="#">Guide de l'association</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="mentions-legales.html">Mentions légales</a></li>
+                    <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+                    <li><a href="cgu-proprietaires.html">CGU Propriétaires</a></li>
+                    <li><a href="cgu-associations.html">CGU Associations</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ProprioAsso. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Switch Tab
+        function switchTab(tab) {
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.closest('.tab-btn').classList.add('active');
+            
+            // Update content
+            document.querySelectorAll('.faq-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tab).classList.add('active');
+            
+            // Reset search
+            document.getElementById('searchInput').value = '';
+            resetFaq();
+        }
+
+        // Toggle FAQ
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Close all in same section
+            item.closest('.faq-content').querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+            });
+            
+            // Open clicked if wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Search FAQ
+        function searchFAQ() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const activeSection = document.querySelector('.faq-content.active');
+            const faqItems = activeSection.querySelectorAll('.faq-item');
+            const noResults = activeSection.querySelector('.no-results');
+            let hasResults = false;
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question-text').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Show/hide no results message
+            if (hasResults) {
+                noResults.classList.remove('show');
+            } else {
+                noResults.classList.add('show');
+            }
+            
+            // Show/hide categories based on visible items
+            activeSection.querySelectorAll('.faq-category').forEach(category => {
+                const visibleItems = category.querySelectorAll('.faq-item[style="display: block;"], .faq-item:not([style*="display: none"])');
+                if (visibleItems.length === 0 && searchTerm !== '') {
+                    category.style.display = 'none';
+                } else {
+                    category.style.display = 'block';
+                }
+            });
+        }
+
+        // Reset FAQ display
+        function resetFaq() {
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.style.display = 'block';
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.faq-category').forEach(category => {
+                category.style.display = 'block';
+            });
+            document.querySelectorAll('.no-results').forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+    </script>
+
+</body>
+</html>
